@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { APP_NAME, NAV_LINKS } from '@/lib/constants'
@@ -37,7 +38,14 @@ export const Header: React.FC = () => {
 
           {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button href="#quiz" variant="primary">Take Free Quiz</Button>
+            <SignedOut>
+              <Button href="/sign-in" variant="secondary">Sign In</Button>
+              <Button href="/sign-up" variant="primary">Sign Up</Button>
+            </SignedOut>
+            <SignedIn>
+              <Button href="#quiz" variant="primary">Take Free Quiz</Button>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
 
           {/* Mobile Menu Button */}
@@ -65,9 +73,22 @@ export const Header: React.FC = () => {
                 </a>
               ))}
               <div className="pt-4 flex flex-col space-y-3">
-                <Button href="#quiz" variant="primary" className="w-full">
-                  Take Free Quiz
-                </Button>
+                <SignedOut>
+                  <Button href="/sign-in" variant="secondary" className="w-full">
+                    Sign In
+                  </Button>
+                  <Button href="/sign-up" variant="primary" className="w-full">
+                    Sign Up
+                  </Button>
+                </SignedOut>
+                <SignedIn>
+                  <Button href="#quiz" variant="primary" className="w-full">
+                    Take Free Quiz
+                  </Button>
+                  <div className="flex items-center justify-center pt-2">
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                </SignedIn>
               </div>
             </nav>
           </div>
@@ -76,5 +97,4 @@ export const Header: React.FC = () => {
     </header>
   )
 }
-
 
