@@ -17,16 +17,16 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Tradeo Brand Colors
+        // New Brand Colors - Soft & Modern Palette
         primary: {
-          DEFAULT: '#00C853',
-          dark: '#00A043',
-          light: '#B9F6CA',
+          DEFAULT: '#B5D67E', // Soft lime green
+          dark: '#9AB968',
+          light: '#D4E8B4',
         },
         // Background Colors
         background: {
           DEFAULT: '#FFFFFF',
-          gray: '#F5F5F5',
+          gray: '#F4EDD7', // Warm beige/cream
         },
         // Text Colors
         text: {
@@ -35,10 +35,10 @@ module.exports = {
         },
         // Accent Colors
         accent: {
-          red: '#EF5350',
-          blue: '#42A5F5',
-          yellow: '#FFCA28',
-          orange: '#FF7043',
+          pink: '#E5A9B8', // Rose pink
+          lavender: '#F0D4E8', // Light lavender pink
+          blue: '#B8D6E5', // Soft blue (complementary)
+          yellow: '#F4E4A5', // Soft yellow
         },
         // UI Colors
         divider: '#E0E0E0',
