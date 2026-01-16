@@ -133,7 +133,7 @@ export const SkinQuiz: React.FC = () => {
   const result = selectedSkinType ? SKIN_TYPE_RESULTS[selectedSkinType] : null
 
   return (
-    <section id="quiz" className="py-20 bg-gradient-to-br from-primary/5 via-white to-accent-blue/5">
+    <section id="quiz" className="py-20 bg-gradient-to-br from-primary/5 via-white to-accent-lavender/5">
       <Container>
         <FadeIn>
           <div className="text-center mb-12">
@@ -158,7 +158,7 @@ export const SkinQuiz: React.FC = () => {
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-primary to-accent-blue rounded-full transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-primary to-accent-lavender rounded-full transition-all duration-500"
                       style={{ width: `${((currentQuestion) / QUIZ_QUESTIONS.length) * 100}%` }}
                     ></div>
                   </div>
@@ -224,7 +224,7 @@ export const SkinQuiz: React.FC = () => {
                   </div>
 
                   {/* Products */}
-                  <div className="bg-accent-blue/5 rounded-xl p-6">
+                  <div className="bg-accent-lavender/5 rounded-xl p-6">
                     <h4 className="text-lg font-semibold text-text-primary mb-4 flex items-center">
                       <span className="text-2xl mr-2">🛍️</span>
                       Recommended Products
@@ -232,7 +232,7 @@ export const SkinQuiz: React.FC = () => {
                     <ul className="space-y-3">
                       {result.products.map((product, index) => (
                         <li key={index} className="flex items-center text-sm">
-                          <span className="text-accent-yellow mr-2">⭐</span>
+                          <span className="text-accent-pink mr-2">⭐</span>
                           <span className="text-text-primary font-medium">{product}</span>
                         </li>
                       ))}
