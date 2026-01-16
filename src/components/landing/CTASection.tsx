@@ -8,7 +8,7 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 
 export const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-accent-pink to-accent-lavender relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -42,7 +42,7 @@ export const CTASection: React.FC = () => {
                 size="lg"
                 variant="secondary"
                 href="#quiz"
-                className="group bg-white text-primary hover:bg-gray-100 hover:text-primary-dark border-0 shadow-xl"
+                className="group bg-white text-accent-pink hover:bg-gray-100 hover:text-accent-pink/80 border-0 shadow-xl"
               >
                 Find My Skin Type Free
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
@@ -73,5 +73,6 @@ export const CTASection: React.FC = () => {
     </section>
   )
 }
+
 
 
