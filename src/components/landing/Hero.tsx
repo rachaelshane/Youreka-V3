@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <FadeIn delay={0.1}>
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-accent-blue/10 rounded-full text-primary text-sm font-medium border border-primary/20">
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-accent-lavender/10 rounded-full text-primary text-sm font-medium border border-primary/20">
                 <Zap size={16} className="mr-2" />
                 Join 500K+ Teens Getting Clear Skin
               </div>
@@ -48,13 +48,13 @@ export const Hero: React.FC = () => {
             <FadeIn delay={0.5}>
               <div className="flex flex-wrap items-center gap-6 pt-4">
                 <div className="flex items-center text-sm text-text-secondary">
-                  <div className="w-8 h-8 bg-accent-blue/20 rounded-full flex items-center justify-center mr-2">
+                  <div className="w-8 h-8 bg-accent-lavender/30 rounded-full flex items-center justify-center mr-2">
                     ✓
                   </div>
                   100% Free Forever
                 </div>
                 <div className="flex items-center text-sm text-text-secondary">
-                  <div className="w-8 h-8 bg-accent-yellow/20 rounded-full flex items-center justify-center mr-2">
+                  <div className="w-8 h-8 bg-accent-pink/30 rounded-full flex items-center justify-center mr-2">
                     ✓
                   </div>
                   No Signup Required
@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
                         <p className="text-sm text-text-secondary">Your Skin Type</p>
                         <h3 className="text-lg font-semibold text-text-primary">Combination • Acne-Prone</h3>
                       </div>
-                      <div className="bg-accent-blue/20 px-3 py-1 rounded-full">
+                      <div className="bg-accent-lavender/30 px-3 py-1 rounded-full">
                         <span className="text-sm font-bold">✨ 98%</span>
                       </div>
                     </div>
@@ -95,7 +95,7 @@ export const Hero: React.FC = () => {
                         <p className="text-sm font-bold text-text-primary">Active Acne</p>
                         <p className="text-xs text-text-secondary">T-Zone Area</p>
                       </div>
-                      <div className="bg-accent-yellow/10 rounded-lg p-4">
+                      <div className="bg-accent-pink/20 rounded-lg p-4">
                         <div className="text-2xl mb-2">💧</div>
                         <p className="text-sm font-bold text-text-primary">Dry Cheeks</p>
                         <p className="text-xs text-text-secondary">Needs Hydration</p>
@@ -113,7 +113,7 @@ export const Hero: React.FC = () => {
                     </div>
 
                     {/* Quick Action */}
-                    <div className="bg-gradient-to-r from-primary to-accent-blue rounded-lg p-4 text-white">
+                    <div className="bg-gradient-to-r from-primary to-accent-pink rounded-lg p-4 text-white">
                       <p className="text-sm font-semibold mb-1">Start Your Routine</p>
                       <p className="text-xs opacity-90">3 simple steps, morning & night</p>
                     </div>
@@ -122,10 +122,10 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 bg-accent-blue text-white px-4 py-2 rounded-lg shadow-lg animate-float">
+              <div className="absolute -top-6 -right-6 bg-accent-lavender text-text-primary px-4 py-2 rounded-lg shadow-lg animate-float">
                 <p className="text-sm font-semibold">✨ Skin Analyzed</p>
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-accent-yellow text-text-primary px-4 py-2 rounded-lg shadow-lg animate-float" style={{ animationDelay: '1s' }}>
+              <div className="absolute -bottom-6 -left-6 bg-accent-pink text-white px-4 py-2 rounded-lg shadow-lg animate-float" style={{ animationDelay: '1s' }}>
                 <p className="text-sm font-semibold">💰 Budget Picks!</p>
               </div>
             </div>
