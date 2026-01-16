@@ -127,11 +127,11 @@ export const Features: React.FC = () => {
                         <div className="bg-white rounded-lg p-4 space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-text-primary">🎯 Active Acne</span>
-                            <span className="text-xs text-accent-yellow">T-Zone</span>
+                            <span className="text-xs text-accent-pink">T-Zone</span>
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-text-primary">💧 Dry Patches</span>
-                            <span className="text-xs text-accent-blue">Cheeks</span>
+                            <span className="text-xs text-accent-lavender">Cheeks</span>
                           </div>
                         </div>
                       </div>
@@ -147,23 +147,23 @@ export const Features: React.FC = () => {
                           <div className="bg-white rounded-lg p-4 border-l-4 border-primary">
                             <div className="flex items-center justify-between mb-1">
                               <p className="text-sm font-semibold text-text-primary">CeraVe Foaming Cleanser</p>
-                              <span className="text-accent-yellow text-sm">⭐ 4.7</span>
+                              <span className="text-accent-pink text-sm">⭐ 4.7</span>
                             </div>
                             <p className="text-xs text-text-secondary mb-2">Perfect for oily T-zone</p>
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-primary font-semibold">$12.99</span>
-                              <span className="text-xs text-accent-blue">467 teens verified</span>
+                              <span className="text-xs text-accent-lavender">467 teens verified</span>
                             </div>
                           </div>
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-accent-blue">
+                          <div className="bg-white rounded-lg p-4 border-l-4 border-accent-lavender">
                             <div className="flex items-center justify-between mb-1">
                               <p className="text-sm font-semibold text-text-primary">Neutrogena Hydro Boost</p>
-                              <span className="text-accent-yellow text-sm">⭐ 4.6</span>
+                              <span className="text-accent-pink text-sm">⭐ 4.6</span>
                             </div>
                             <p className="text-xs text-text-secondary mb-2">Hydrates dry cheeks</p>
                             <div className="flex items-center justify-between">
                               <span className="text-xs text-primary font-semibold">$18.99</span>
-                              <span className="text-xs text-accent-blue">892 teens verified</span>
+                              <span className="text-xs text-accent-lavender">892 teens verified</span>
                             </div>
                           </div>
                         </div>
@@ -186,8 +186,8 @@ export const Features: React.FC = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="bg-accent-blue/10 rounded-lg p-3">
-                          <p className="text-xs font-semibold text-accent-blue mb-2">💡 Pro Tip</p>
+                        <div className="bg-accent-lavender/10 rounded-lg p-3">
+                          <p className="text-xs font-semibold text-accent-lavender mb-2">💡 Pro Tip</p>
                           <p className="text-xs text-text-primary">The Ordinary has great dupes for expensive serums!</p>
                         </div>
                       </div>
@@ -224,7 +224,7 @@ export const Features: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="bg-accent-yellow/10 rounded-lg p-3">
+                        <div className="bg-accent-pink/10 rounded-lg p-3">
                           <p className="text-xs font-semibold text-text-primary">⏱️ Takes only 3 minutes!</p>
                         </div>
                       </div>
@@ -239,5 +239,6 @@ export const Features: React.FC = () => {
     </section>
   )
 }
+
 
 
