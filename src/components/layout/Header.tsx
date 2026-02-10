@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
               <Button href="/sign-up" variant="primary">Sign Up</Button>
             </SignedOut>
             <SignedIn>
-              <Button href="#quiz" variant="primary">Take Free Quiz</Button>
+              <Button href="/home" variant="primary">Dashboard</Button>
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
           </div>
@@ -82,8 +82,8 @@ export const Header: React.FC = () => {
                   </Button>
                 </SignedOut>
                 <SignedIn>
-                  <Button href="#quiz" variant="primary" className="w-full">
-                    Take Free Quiz
+                  <Button href="/home" variant="primary" className="w-full">
+                    Dashboard
                   </Button>
                   <div className="flex items-center justify-center pt-2">
                     <UserButton afterSignOutUrl="/" />
