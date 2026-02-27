@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUser, useSession } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -66,7 +66,6 @@ const questions: Question[] = [
 export default function OnboardingPage() {
   const router = useRouter();
   const { user, isLoaded } = useUser();
-  const { session } = useSession();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -108,24 +107,19 @@ export default function OnboardingPage() {
   };
 
   const handleSubmit = async () => {
-    if (!user) return;
-
     setIsSubmitting(true);
     try {
-      // Save onboarding data to Clerk user metadata
-      await user.update({
-        unsafeMetadata: {
-          onboardingCompleted: true,
-          skinProfile: answers,
-          onboardingDate: new Date().toISOString(),
-        },
+      // Save onboarding data server-side via publicMetadata (reliable for server checks)
+      const res = await fetch('/api/onboarding', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ skinProfile: answers }),
       });
 
-      // Reload session so middleware sees updated unsafeMetadata claims
-      await session?.reload();
+      if (!res.ok) throw new Error('Failed to save onboarding data');
 
-      // Redirect to dashboard
-      router.push('/home');
+      // Hard navigation so the server-side layout re-runs with fresh user data
+      window.location.href = '/home';
     } catch (error) {
       console.error('Error saving onboarding data:', error);
       setIsSubmitting(false);
