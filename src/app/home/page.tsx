@@ -1,122 +1,16 @@
-'use client'
+import { currentUser } from '@clerk/nextjs/server'
+import { redirect } from 'next/navigation'
 
-import { Container } from '@/components/ui/Container'
-import { Card } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import { useUser } from '@clerk/nextjs'
-import { Sparkles } from 'lucide-react'
+export default async function HomeLayout({ children }: { children: React.ReactNode }) {
+  const user = await currentUser()
 
-const skinTypeEmojis: Record<string, string> = {
-  oily: '💧',
-  dry: '🏜️',
-  combination: '🎭',
-  normal: '😊',
-}
+  if (!user) {
+    redirect('/sign-in')
+  }
 
-const skinConcernLabels: Record<string, string> = {
-  acne: 'Acne & Breakouts',
-  aging: 'Anti-Aging',
-  dryness: 'Hydration',
-  sensitivity: 'Sensitivity',
-  hyperpigmentation: 'Brightening',
-  pores: 'Pore Care',
-}
+  if (!user.publicMetadata?.onboardingCompleted) {
+    redirect('/onboarding')
+  }
 
-export default function HomePage() {
-  const { user } = useUser()
-  const skinProfile = user?.unsafeMetadata?.skinProfile as Record<string, string> | undefined
-
-  const skinType = skinProfile?.skinType || 'normal'
-  const skinConcern = skinProfile?.skinConcern
-  const skinGoal = skinProfile?.skinGoal
-
-  return (
-    <main className="min-h-screen pt-24 pb-12 bg-background-gray">
-      <Container>
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <h1 className="text-h1-mobile md:text-h1 text-text-primary">
-              Welcome back, {user?.firstName || 'there'}!
-            </h1>
-            <Sparkles className="w-8 h-8 text-primary" />
-          </div>
-          <p className="text-body-mobile md:text-body text-text-secondary mb-4">
-            Track your skin journey and discover personalized product recommendations
-          </p>
-
-          {skinProfile && (
-            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
-              <span className="text-2xl">{skinTypeEmojis[skinType]}</span>
-              <span className="text-sm font-medium text-text-primary">
-                {skinType.charAt(0).toUpperCase() + skinType.slice(1)} Skin
-                {skinConcern && ` • ${skinConcernLabels[skinConcern]}`}
-              </span>
-            </div>
-          )}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card hover>
-            <div className="text-4xl mb-4">📸</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              Take Your First Scan
-            </h3>
-            <p className="text-text-secondary">
-              Start your beauty journey with an AI-powered face scan
-            </p>
-          </Card>
-
-          <Card hover>
-            <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              View Your Profile
-            </h3>
-            <p className="text-text-secondary">
-              Check your personalized beauty recommendations
-            </p>
-          </Card>
-
-          <Card hover>
-            <div className="text-4xl mb-4">📈</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              Track Progress
-            </h3>
-            <p className="text-text-secondary">
-              Monitor your skin health improvements over time
-            </p>
-          </Card>
-
-          <Card hover>
-            <div className="text-4xl mb-4">🛍️</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              Product Matches
-            </h3>
-            <p className="text-text-secondary">
-              Discover products perfect for your skin type
-            </p>
-          </Card>
-
-          <Card hover>
-            <div className="text-4xl mb-4">💡</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              Beauty Tips
-            </h3>
-            <p className="text-text-secondary">
-              Get personalized advice for glowing skin
-            </p>
-          </Card>
-
-          <Card hover>
-            <div className="text-4xl mb-4">⚙️</div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">
-              Settings
-            </h3>
-            <p className="text-text-secondary">
-              Customize your experience and preferences
-            </p>
-          </Card>
-        </div>
-      </Container>
-    </main>
-  )
+  return <>{children}</>
 }
