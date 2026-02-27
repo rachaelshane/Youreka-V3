@@ -1,31 +1,27 @@
-import { authMiddleware } from '@clerk/nextjs/server'
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 
-export default authMiddleware({
-  publicRoutes: ['/', '/sign-in(.*)', '/sign-up(.*)'],
-  afterAuth(auth, req) {
-    // If user is signed in and trying to access protected routes
-    if (auth.userId) {
-      const path = req.nextUrl.pathname
+const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)'])
 
-      // Skip onboarding check for onboarding page itself and public routes
-      if (path.startsWith('/onboarding') || path.startsWith('/sign-') || path === '/') {
-        return NextResponse.next()
-      }
+export default clerkMiddleware((auth, req) => {
+  const path = req.nextUrl.pathname
 
-      // Check if user has completed onboarding
-      const unsafeMetadata = auth.sessionClaims?.unsafeMetadata as { onboardingCompleted?: boolean } | undefined
-      const onboardingCompleted = unsafeMetadata?.onboardingCompleted
+  // Protect non-public routes (redirects to sign-in if unauthenticated)
+  if (!isPublicRoute(req)) {
+    auth.protect()
+  }
 
-      // Redirect to onboarding if not completed
-      if (!onboardingCompleted && !path.startsWith('/onboarding')) {
-        const onboardingUrl = new URL('/onboarding', req.url)
-        return NextResponse.redirect(onboardingUrl)
-      }
+  const { userId, sessionClaims } = auth()
+
+  // Redirect authenticated users to onboarding if not completed
+  if (userId && !path.startsWith('/onboarding')) {
+    const unsafeMetadata = sessionClaims?.unsafeMetadata as { onboardingCompleted?: boolean } | undefined
+    const onboardingCompleted = unsafeMetadata?.onboardingCompleted
+
+    if (!onboardingCompleted) {
+      return NextResponse.redirect(new URL('/onboarding', req.url))
     }
-
-    return NextResponse.next()
-  },
+  }
 })
 
 export const config = {
