@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
+import { useUser, useSession } from '@clerk/nextjs';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -66,6 +66,7 @@ const questions: Question[] = [
 export default function OnboardingPage() {
   const router = useRouter();
   const { user, isLoaded } = useUser();
+  const { session } = useSession();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -119,6 +120,9 @@ export default function OnboardingPage() {
           onboardingDate: new Date().toISOString(),
         },
       });
+
+      // Reload session so middleware sees updated unsafeMetadata claims
+      await session?.reload();
 
       // Redirect to dashboard
       router.push('/home');
