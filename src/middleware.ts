@@ -4,14 +4,15 @@ import { NextResponse } from 'next/server'
 const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)'])
 
 export default clerkMiddleware((auth, req) => {
+  const { userId, sessionClaims } = auth()
   const path = req.nextUrl.pathname
 
-  // Protect non-public routes (redirects to sign-in if unauthenticated)
-  if (!isPublicRoute(req)) {
-    auth.protect()
+  // Redirect unauthenticated users to sign-in for protected routes
+  if (!isPublicRoute(req) && !userId) {
+    const signInUrl = new URL('/sign-in', req.url)
+    signInUrl.searchParams.set('redirect_url', req.url)
+    return NextResponse.redirect(signInUrl)
   }
-
-  const { userId, sessionClaims } = auth()
 
   // Redirect authenticated users to onboarding if not completed
   if (userId && !path.startsWith('/onboarding')) {
