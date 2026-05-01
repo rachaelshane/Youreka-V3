@@ -43,7 +43,17 @@ export const Header: React.FC = () => {
               <Button href="/sign-up" variant="primary">Sign Up</Button>
             </SignedOut>
             <SignedIn>
-              <Button href="/home" variant="primary">Dashboard</Button>
+              <nav className="flex items-center space-x-6 mr-2">
+                <Link href="/home" className="text-text-secondary hover:text-primary transition-colors text-sm">
+                  Dashboard
+                </Link>
+                <Link href="/onboarding" className="text-text-secondary hover:text-primary transition-colors text-sm">
+                  My Profile
+                </Link>
+                <Link href="/matches" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">
+                  My Matches
+                </Link>
+              </nav>
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
           </div>
@@ -82,10 +92,16 @@ export const Header: React.FC = () => {
                   </Button>
                 </SignedOut>
                 <SignedIn>
-                  <Button href="/home" variant="primary" className="w-full">
+                  <Link href="/home" className="text-text-secondary hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
                     Dashboard
-                  </Button>
-                  <div className="flex items-center justify-center pt-2">
+                  </Link>
+                  <Link href="/onboarding" className="text-text-secondary hover:text-primary transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                    My Profile
+                  </Link>
+                  <Link href="/matches" className="text-text-secondary hover:text-primary font-medium transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                    My Matches
+                  </Link>
+                  <div className="flex items-center pt-2">
                     <UserButton afterSignOutUrl="/" />
                   </div>
                 </SignedIn>
@@ -97,4 +113,3 @@ export const Header: React.FC = () => {
     </header>
   )
 }
-
